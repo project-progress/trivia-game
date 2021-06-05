@@ -1,0 +1,145 @@
+.title {
+    position: absolute;
+    margin-left: 400px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 50px;
+    border-style: solid;
+    border-color: #00cc00;
+}
+
+.user1 {
+    height: 100px;
+    width: 300px;
+    background-color: #00cc00;
+    position: absolute;
+    margin-left: 255px;
+    margin-top: 200px;
+}
+
+.name1 {
+    font-family: 'Trebuchet MS', sans-serif;
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 50px;
+    color: #595959;
+}
+
+.input1 {
+    font-family: 'Trebuchet MS', sans-serif;
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 150px;
+}
+
+.checkbox1 {
+    margin-top: 50px;
+    margin-left: 220px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+}
+
+.user2 {
+    height: 100px;
+    width: 300px;
+    background-color: #00cc00;
+    position: absolute;
+    margin-left: 700px;
+    margin-top: 200px;
+}
+
+.name2 {
+    font-family: 'Trebuchet MS', sans-serif;
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 50px;
+    color: #595959;
+}
+
+.input2 {
+    font-family: 'Trebuchet MS', sans-serif;
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 150px;
+}
+
+.checkbox2 {
+    margin-top: 50px;
+    margin-left: 220px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+}
+
+.user3 {
+    height: 100px;
+    width: 300px;
+    background-color: #00cc00;
+    position: absolute;
+    margin-left: 255px;
+    margin-top: 400px;
+}
+
+.name3 {
+    font-family: 'Trebuchet MS', sans-serif;
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 50px;
+    color: #595959;
+}
+
+.input3 {
+    font-family: 'Trebuchet MS', sans-serif;
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 150px;
+}
+
+.checkbox3 {
+    margin-top: 50px;
+    margin-left: 220px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+}
+
+.user4 {
+    height: 100px;
+    width: 300px;
+    background-color: #00cc00;
+    position: absolute;
+    margin-left: 700px;
+    margin-top: 400px;
+}
+
+.name4 {
+    font-family: 'Trebuchet MS', sans-serif;
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 50px;
+    color: #595959;
+}
+
+.input4 {
+    font-family: 'Trebuchet MS', sans-serif;
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 50px;
+    width: 150px;
+}
+
+.checkbox4 {
+    margin-top: 50px;
+    margin-left: 220px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+}
+.sender {
+    position: relative;
+    left:570px;
+    top:550px;
+}
