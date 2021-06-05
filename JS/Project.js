@@ -1,3 +1,18 @@
+//If Users aare in the local storage - load them.
+if(window.localStorage.length){
+    for(user in window.localStorage){
+        let value = window.localStorage.getItem(user);
+        //check for value, because for loop get also methods of local storage
+        if(value){
+            let el = document.getElementById(user);
+            el.querySelector("input[type=checkbox]").checked = true;
+            let textBox = el.querySelector("input[type=text]");
+            textBox.disabled = null;
+            textBox.value = value;
+        }
+    }
+}
+
 function checkbox(number){
     if(document.getElementById(`checkbox${number}`).checked){
         document.getElementById(`input${number}`).disabled=false;
@@ -22,6 +37,6 @@ function button()
     window.location='./GamePage.html';
    }
    else {
-       alert("the number of players is not enough");
+       alert("The number of players is not enough");
    }
 }
