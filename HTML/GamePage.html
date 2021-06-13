@@ -34,11 +34,94 @@
                <label for="r4" id="l4">question4</label><br>
                <input type="radio" id="r5" name="question" value="">
                <label for="r5" id="l5">question5</label><br>
-               <button> See the categories</button>
+               <div class="row">
+                <div class="col-2 bg-dark text-white rounded-circle m-auto text-center">choose the ctegory</div>
+               </div>
+               
             </div>
           </div>
+            <div class="container col fixed top" id="valuebox">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="Radiosvalue1" value="100">
+                <label class="form-check-label" for="exampleRadios1">
+                 100
+                </label>
+              </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Radiosvalue2" value="200">
+                    <label class="form-check-label" for="exampleRadios2">
+                     200
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Radiosvalue3" value="300">
+                    <label class="form-check-label" for="exampleRadios3">
+                     300
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Radiosvalue4" value="400">
+                    <label class="form-check-label" for="exampleRadios3">
+                     400
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Radiosvalue5" value="500">
+                    <label class="form-check-label" for="exampleRadios3">
+                     500
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Radiosvalue6" value="600">
+                    <label class="form-check-label" for="exampleRadios3">
+                     600
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Radiosvalue7" value="700">
+                    <label class="form-check-label" for="exampleRadios3">
+                     700
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Radiosvalue8" value="800">
+                    <label class="form-check-label" for="exampleRadios3">
+                     800
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Radiosvalue9" value="900">
+                    <label class="form-check-label" for="exampleRadios3">
+                     900
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="Radiosvalue10" value="1000">
+                    <label class="form-check-label" for="exampleRadios3">
+                     1000
+                    </label>
+                  </div>
+                  <div class="row">
+                    <div class="col-2 bg-dark text-white rounded-circle m-auto text-center">choose the value</div>
+                  </div>
+                  
      </div>
-        
+     
+        <div class="container col">
+            <div class="row mt-5">
+                <div id="questionarea" class="border border-dark rounded"></div>
+            </div>
+            <div class="row mt-5">
+              <div id="answerarea" class="border border-dark rounded"></div>
+          </div>
+            <div class="row mt-5">
+                <button type="button" class="btn btn-outline-primary" onclick="bringquestion()">See the question</button>
+            </div>
+            <div class="row mt-5">
+              <button type="button" class="btn btn-outline-primary" onclick="addResult()">Add values</button>
+          </div>
+        </div>
+       </div>
     </body>
     <script src="../JS/GamePage.js"></script>
 </html>
