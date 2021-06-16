@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations!</title>
+    <link rel="stylesheet" href="css/finish.css">
+</head>
+<body>
+    <div class="maindiv">
+        <p class="congrats"> Congratulations</p>
+        <div class="text"><span id="winnerName"></span> successfuly finished Trivia game with great knowledge!</div>
+        <img class="firstplace" src="https://static.vecteezy.com/system/resources/thumbnails/001/972/314/small/first-place-medal-award-symbol-isolated-free-vector.jpg">
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get("user");
+        document.getElementById("winnerName").innerHTML = name;
+    </script>
+</body>
+</html>

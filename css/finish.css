@@ -1,0 +1,30 @@
+.maindiv {
+    border-style: solid;
+    border-color: #00cc00;
+    width: 600px;
+    height: 500px;
+    margin: 6rem auto;
+}
+
+.congrats {
+    color: #00cc00;
+    position: absolute;
+    margin-left: 200px;
+    margin-top: 50px;
+    font-size: 40px;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.text {
+    position: absolute;
+    color: gray;
+    margin-left: 150px;
+    margin-top: 133px;
+}
+
+.firstplace {
+    width: 200px;
+    height: 200px;
+    margin-left: 200px;
+    margin-top: 200px;
+}
