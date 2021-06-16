@@ -2,7 +2,6 @@ const CATEGORIES_COUNT = 5;
 let categories = [];
 let usersStore = [];
 let activeUser = 0;
-let gameMode = "choosing";
 let disabledQuestions = [];
 
 function insertUsers() {
@@ -23,7 +22,6 @@ function insertUsers() {
         window.location = "./index.html";
     }
 }
-
 
 function updateActiveUser(userIndex){
     usersStore.forEach(u => {
@@ -52,46 +50,43 @@ function updateUsersUI() {
     }
 }
 
-function makeUsersClickable(question, value){
-    for(i in usersStore){
+
+function countAnswer(question, value){
+    let successUsers = [];
+    for(let i in usersStore){
+        let user = document.getElementById(`user${i}-input`);
+        if(user.value.toLowerCase() == question.answer.toLowerCase()){
+            usersStore[i].scores += value;
+            successUsers.push(usersStore[i].name);
+        }
+    }
+    if(successUsers.length){
+        alert(`${successUsers.join(", ")} are right! The answer is ${question.answer}`);
+    } else {
+        alert(`No one answered correctly :c The Correct answer is ${question.answer}`);
+    }
+    document.getElementById("shirma").remove();
+    updateUsersUI();
+    updateActiveUser("next");
+    console.log(question);
+    disabledQuestions.push([question.category_id, value]);
+    drawTable(categories);
+}
+
+function addUserFields(question, value){
+    console.log(question);
+    let button = document.createElement("button");
+    button.innerHTML = "View Answer!";
+    button.addEventListener("click", () => {
+        countAnswer(question, value);
+    });
+    document.getElementById("shirma").appendChild(button);
+    for(let i in usersStore){
         let user = document.getElementById(`user${i}`);
-        let userObj = usersStore[i];
-        user.className += " clickable";
-        let callback = () => {
-            //open popup
-            let popup = document.createElement("div");
-            popup.id = "popup";
-            popup.innerHTML = `
-            <h3>
-                Did ${userObj.name} answers correctly?
-            </h3>
-            <p>Answer: ${question.answer}</p>
-            <button id="yes">Yes<br>+${value}</button>
-            <button id="no">No<br>-${value}</button>
-            `;
-            let shirma = document.getElementById("shirma");
-
-            shirma.appendChild(popup);
-            let updater = () => {
-                document.getElementById("shirma").remove();
-                updateUsersUI();
-                updateActiveUser("next");
-                console.log(question);
-                disabledQuestions.push([question.category_id, value]);
-                drawTable(categories);
-
-            }
-            document.getElementById("yes").addEventListener("click", () => {
-                userObj.scores += value;
-                updater();
-            });
-
-            document.getElementById("no").addEventListener("click", () => {
-                userObj.scores -= value;
-                updater();
-            });
-        };
-        user.addEventListener("click", callback);
+        user.className += " active";
+        user.innerHTML += `
+        <input id="user${i}-input" placeholder="answer" />
+        `;
     }
 }
 
@@ -120,8 +115,8 @@ function getQuestion(id, value){
         shirma.appendChild(questionDiv);
         document.getElementById("categories").appendChild(shirma);
 
-        gameMode = "answering";
-        makeUsersClickable(question, value);
+        // makeUsersClickable(question, value);
+        addUserFields(question, value);
     })
     .catch(err => console.log('Looks like there was a problem: ' + err) );
 }
@@ -162,7 +157,6 @@ function fillCategories() {
     .then(resp => resp.json())
     .then(data => {
         let cats = [];
-        data = data.filter(cat => cat.clues_count == 10);
         while(cats.length < 5){
             let randomNum = Math.round(Math.random() * data.length);
             let el = data[randomNum];

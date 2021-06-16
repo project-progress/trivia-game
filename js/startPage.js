@@ -19,12 +19,19 @@ function preload(){
     //on click the start button rewrite users in localstorage
     let startButton = document.getElementById("startButton");
     startButton.addEventListener('click', () => {
-        let users = Array(MAX_USERS).fill(0).map((_, i) => new User(document.getElementById(`user${i}`).value, 0)).filter(u => u.name != "");
+        let users = [];
+        for(let i = 0; i < MAX_USERS; i++){
+            //trim() removes all unnecessery spaces 
+            let userName = document.getElementById(`user${i}`).value.trim();
+            if(userName.length > 2 ){
+                users.push(new User(userName, 0));
+            }
+        }
         if(users.length >= 2){
             window.localStorage.setItem("users", JSON.stringify(users));
             window.location = "./game.html";
         } else {
-            alert("The number of players is not enough. It must be minimum 2.");
+            alert("The number of players is not enough. It must be minimum 2 (Also all names must be minimum 3 symbols length)");
         }
 
     });
