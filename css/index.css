@@ -40,6 +40,7 @@ main h2{
 }
 
 #startButton{
+    cursor: pointer;
     display: block;
     margin: 2rem auto;
     width: 7rem;
