@@ -1,0 +1,61 @@
+.game-name{
+    display: flex;
+    justify-content: center;
+    margin: 4rem 0 6rem 0;
+}
+
+.game-name h1{
+    color: white;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    background-color: #93F5A3;
+    display: inline-block;
+}
+
+main h2{
+    text-align: center;
+    color: #878787;
+    margin-bottom: 2rem;
+}
+
+#users{
+    margin: 0 auto;
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#users input{
+    border-radius: 100rem;
+    border: 1px solid #878787;
+    outline: none;
+    padding: 0.3rem 0.7rem;
+    color: #878787;
+}
+
+#users input::placeholder{
+    color: #d3d3d3;
+}
+
+#startButton{
+    display: block;
+    margin: 2rem auto;
+    width: 7rem;
+    padding: 1rem 1.5rem;
+    background-color: #93F5A3;
+    border: none;
+    border-radius: 0.7rem;
+    color: white;
+    font-size: 1.4rem;
+    transition: 0.3s ease background-color;
+}
+
+#startButton:hover{
+    background-color: #8be79a;
+}
+
+#startButton:active{
+    background-color: #79d688;
+}
