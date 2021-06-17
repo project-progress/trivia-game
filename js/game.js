@@ -1,4 +1,4 @@
-const CATEGORIES_COUNT = 5;
+const CATEGORIES_COUNT = 6;
 let categories = [];
 let usersStore = [];
 let activeUser = 0;
@@ -105,8 +105,8 @@ function getQuestion(question, value){
 }
 
 function drawTable(data) {
-    let table = document.getElementById("categories");
-    table.innerHTML = "";
+    let tbody = document.createElement("tbody");
+    
     for(let items of data){
         let tr = document.createElement("tr");
 
@@ -133,15 +133,21 @@ function drawTable(data) {
             }
         }
 
-        table.appendChild(tr);
+        tbody.appendChild(tr);
     }
+
+    let div = document.getElementById("categories");
+    div.innerHTML = "";
+    let table = document.createElement("table");
+    table.appendChild(tbody);
+    div.appendChild(table);
 }
 
 async function fillCategories() {
     let data = await fetch("https://jservice.io/api/categories?count=100")
     data = await data.json();
     let cats = [];
-    while(cats.length < 5){
+    while(cats.length < CATEGORIES_COUNT){
         let randomNum = Math.round(Math.random() * data.length);
         let el = data[randomNum];
         if(el) cats.push(el);
