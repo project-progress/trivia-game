@@ -61,14 +61,13 @@ function countAnswer(question, value){
         }
     }
     if(successUsers.length){
-        alert(`${successUsers.join(", ")} are right! The answer is ${question.answer}`);
+        alert(`${successUsers.join(", ")} ${successUsers.length > 1 ? "are" : "is"} right! The answer is ${question.answer}`);
     } else {
         alert(`No one answered correctly :c The Correct answer is ${question.answer}`);
     }
     document.getElementById("shirma").remove();
     updateUsersUI();
     updateActiveUser("next");
-    console.log(question);
     disabledQuestions.push([question.category_id, value]);
     drawTable(categories);
 }
