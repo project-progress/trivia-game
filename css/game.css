@@ -86,17 +86,17 @@ td:not(.category){
     cursor: pointer; 
 }
 
-td:not(.category, .unactive):hover{
+td:not(.category, .disabled):hover{
     background-color: #93F5A3;
     color: white;
 }
 
-td:not(.category, .unactive):active{
+td:not(.category, .disabled):active{
     background-color: #79d688;
     color: white;
 }
 
-td.unactive{
+td.disabled{
     background-color: #b8b8b8;
     color: #878787;
     cursor: default;

@@ -90,86 +90,75 @@ function addUserFields(question, value){
     }
 }
 
-function getQuestion(id, value){
-    fetch(`https://jservice.io/api/clues?category=${id}&value=${value}`)
-    .then(resp => resp.json())
-    .then(questions => {
-        if(questions.length < 1){
-            alert("There is problem on jservice. Please check another value.");
-            return;
-        }
+function getQuestion(question, value){
+    let shirma = document.createElement("div");
+    shirma.id = "shirma";
 
-        let question = questions[0];
-
-        let shirma = document.createElement("div");
-        shirma.id = "shirma";
-
-        let questionDiv = document.createElement("div");
-        questionDiv.innerHTML = `
-        <p>
-            ${question.question}
-        </p>
-        `;
-
-        
-        shirma.appendChild(questionDiv);
-        document.getElementById("categories").appendChild(shirma);
-
-        // makeUsersClickable(question, value);
-        addUserFields(question, value);
-    })
-    .catch(err => console.log('Looks like there was a problem: ' + err) );
+    let questionDiv = document.createElement("div");
+    let p = document.createElement("p");
+    p.innerText = question.question;
+    questionDiv.appendChild(p);
+    
+    shirma.appendChild(questionDiv);
+    document.getElementById("categories").appendChild(shirma);
+    
+    addUserFields(question, value);
 }
 
 function drawTable(data) {
     let table = document.getElementById("categories");
     table.innerHTML = "";
-    for(cat of data){
-        table.innerHTML += `
-        <tr>
-            <td class="category">${cat.title}</td>
-            ${Array(8).fill(0).map((_, i) => {
-                let value = (i + 1) * 100;
-                if(value == 800) value = 1000;
-                if(value == 700) value = 800;
+    for(let items of data){
+        let tr = document.createElement("tr");
 
-                let disabled = disabledQuestions.filter(q => q[0] == cat.id && q[1] == value);
-                if(disabled.length){
-                    return `
-                    <td class="unactive">
-                        ${value}
-                    </td>
-                `;
-                }
-                return `
-                    <td onclick="getQuestion(${cat.id}, ${value})">
-                        ${value}
-                    </td>
-                `;
-            }).join("")}
-        </tr>
-        `;
+        //Category cell
+        let tdCat = document.createElement("td");
+        tdCat.className =  "category";
+        tdCat.innerText = items[0].category.title;
+        tr.appendChild(tdCat);
+
+        //Value cells
+        for(let i = 0; i < 5; i++){
+            let value = (i + 1) * 200;
+            let isDisabled = disabledQuestions.filter(q => q[0] == items[0].category.id && q[1] == value).length > 0;
+            if(isDisabled){
+                let tdVal = document.createElement("td");
+                tdVal.className = "disabled";
+                tdVal.innerText = value;
+                tr.appendChild(tdVal);
+            } else {
+                let tdVal = document.createElement("td");
+                tdVal.innerText = value;
+                tdVal.addEventListener("click", () => getQuestion(items[i], value));
+                tr.appendChild(tdVal);
+            }
+        }
+
+        table.appendChild(tr);
     }
 }
 
-function fillCategories() {
-    fetch("http://jservice.io/api/categories?count=200")
-    .then(resp => resp.json())
-    .then(data => {
-        let cats = [];
-        while(cats.length < 5){
-            let randomNum = Math.round(Math.random() * data.length);
-            let el = data[randomNum];
-            if(el) cats.push(el);
-            data.splice(randomNum, 1);
-        }
-        // saving categories for draw table again later
-        categories = cats;
-       drawTable(categories);
-    })
-    .catch(err =>console.log('Looks like there was a problem: ' + err) );
+async function fillCategories() {
+    let data = await fetch("https://jservice.io/api/categories?count=100")
+    data = await data.json();
+    let cats = [];
+    while(cats.length < 5){
+        let randomNum = Math.round(Math.random() * data.length);
+        let el = data[randomNum];
+        if(el) cats.push(el);
+        data.splice(randomNum, 1);
+    }
+    // saving categories for draw table again later
+    categories = await Promise.all(cats.map(async cat => {
+        let res  = await fetch(`https://jservice.io/api/clues?category=${cat.id}`);
+        res = await res.json();
+        return res;
+    }));
+
+    drawTable(categories);
 }
 
 insertUsers();
-fillCategories();
+fillCategories()
+.catch(err =>console.error('Looks like there was a problem: ' + err) );
 updateActiveUser(0);
